@@ -1,0 +1,15 @@
+name: Daemon # 守护服务名
+
+services:
+  - name: postgres@12-main # 服务名
+    interval: 10s # 检测周期
+  - name: redis # 服务名 默认检测周期 3s
+
+#packages:
+#  - name: application1
+#    interval: 10m
+#    uriCheckVersion: http://xxx/versions/application1
+#    uriDownloadPackage: http://xxx/1.2/application1-x64.zip
+#    workDirectory: C:\Program Files\application1
+#    commandGetVersion: '"C:\Program Files\xxx\application1.exe" --version' # 程序路径中包含空格的必须添加"号
+#    needShutdown: true
