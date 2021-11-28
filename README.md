@@ -30,6 +30,10 @@ packages:
     uriCheckVersion: 检查新版本 URI，应返回纯文本版本号：如 1.1.2
     uriDownloadPackage: 新版本程序包 URI，应为可直接复制的压缩包，支持 ZIP、GZIP，不支持可执行安装程序
     workDirectory: 程序包复制目标路径，即程序安装目录
-    commandGetVersion: 获取本地程序版本号的命令行命令，应返回纯文本版本号：如 1.1.2，程序路径中包含空格的必须添加"号
-    needShutdown: 
+    commandGetVersion: 获取本地程序版本号的命令行命令，应返回纯文本版本号：如 1.1.2，程序路径中包含空格
+                       的必须添加"号
+    needShutdown: true 升级时需要关闭程序，此处为避免强制退出可能导致的问题以及 UI 程序可提醒用户处理升级，
+                  只将升级包信息写入 upgrade.ready 文件由该程序自行处理，或者程序将 name 写入
+                  upgrade.ok 中并安全退出，由守护服务处理升级。
+                  false 无需关闭程序的升级包，守护服务下载升级包后即覆盖升级。
 ```
