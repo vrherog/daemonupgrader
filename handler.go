@@ -51,7 +51,7 @@ func (p *program) checkUpgrade(packageInfo UpgradePackageInfo) {
 					if localVer, err = utils.ExecCommandString(packageInfo.CommandGetVersion); err == nil && localVer != `` {
 						if comp, ok := version.CompareVersion(remoteVer, strings.TrimSpace(string(localVer))); ok && comp == 1 {
 							var upgradeReadyInfo map[string]UpgradeReadyInfo
-							if ok = utils.ReadJsonFile(upgradeReadyFile, &upgradeReadyInfo); ok {
+							if ok = utils.ReadJsonFile(upgradeReadyFile, &upgradeReadyInfo); !ok {
 								upgradeReadyInfo = make(map[string]UpgradeReadyInfo)
 							}
 							var notReady = true
