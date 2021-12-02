@@ -43,7 +43,7 @@ func ExecCommand(command string, arg ...string) (result []byte, err error) {
 	return
 }
 
-var reCommandline = regexp.MustCompile(`"(.+)"(\s+(.+))?`)
+var reCommandline = regexp.MustCompile(`"(.+)"\s*(.+)?`)
 
 func ExecCommandString(command string) (result string, err error) {
 	var parts = reCommandline.FindStringSubmatch(command)

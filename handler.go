@@ -47,8 +47,8 @@ func (p *program) checkUpgrade(packageInfo UpgradePackageInfo) {
 				var filename = parts[len(parts)-1]
 				var packageType = filepath.Ext(filename)
 				var remoteVer, localVer string
-				if remoteVer, _, err = utils.RequestText(packageInfo.UriCheckVersion, `GET`, ``); err == nil {
-					if localVer, err = utils.ExecCommandString(packageInfo.CommandGetVersion); err == nil {
+				if remoteVer, _, err = utils.RequestText(packageInfo.UriCheckVersion, `GET`, ``); err == nil && remoteVer != `` {
+					if localVer, err = utils.ExecCommandString(packageInfo.CommandGetVersion); err == nil && localVer != `` {
 						if comp, ok := version.CompareVersion(remoteVer, strings.TrimSpace(string(localVer))); ok && comp == 1 {
 							var upgradeReadyInfo map[string]UpgradeReadyInfo
 							if ok = utils.ReadJsonFile(upgradeReadyFile, &upgradeReadyInfo); ok {
